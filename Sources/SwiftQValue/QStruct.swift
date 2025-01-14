@@ -6,7 +6,7 @@
 //
 
 
-public enum QStruct:Codable {
+public enum QObject:Codable {
     case qValue(QValue)
     case qArr([QValue])
     case qDict([[String: QValue]])
