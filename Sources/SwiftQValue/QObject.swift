@@ -1,5 +1,5 @@
 //
-//  QStruct.swift
+//  QObject.swift
 //  SwiftQValue
 //
 //  Created by Yuma decaux on 14/1/2025.
