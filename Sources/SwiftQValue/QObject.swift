@@ -41,7 +41,7 @@ public enum QObject:Codable {
         if let qDictSingle = try? container.decode([String:QValue].self) {
             self = .qDictSingle(qDictSingle)
         }
-            fatalError("Failed to decode FilterValues")
+            fatalError("Failed to decode QObject")
     }
 
     public func encode(to encoder: Encoder) throws {

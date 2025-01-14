@@ -26,7 +26,7 @@ public enum QValue: Hashable, Identifiable {
                      "int"
                      case .float(_): return
                      "float"
-                     case .bool(_): return "bool"
+        case .bool(_): return "bool"
         }
     }
 }
@@ -35,14 +35,17 @@ extension QValue:Codable {
     public init(from decoder: Decoder) throws {
         if let intValue = try? decoder.singleValueContainer().decode(Int.self) {
             self = .int(intValue)
+            print("found int \(self)")
             return
         }
         if let stringValue = try? decoder.singleValueContainer().decode(String.self) {
             self = .string(stringValue)
+            print("found string \(self)")
             return
         }
         if let floatValue = try? decoder.singleValueContainer().decode(Float.self) {
             self = .float(floatValue)
+            print("found float \(self)")
             return
         }
         if let boolValue = try? decoder.singleValueContainer().decode(Bool.self) {
@@ -102,6 +105,22 @@ extension QValue:Codable {
         }
     }
     
+    
+    public var string:String {
+        return self.value as! String
+    }
+    
+    public var int:Int {
+        return self.value as! Int
+    }
+    
+    public var float:Float {
+        return self.value as! Float
+    }
+    
+    public var bool:Bool {
+        return self.value as! Bool
+    }
     
 }
 
