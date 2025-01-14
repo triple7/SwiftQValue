@@ -9,6 +9,7 @@
 public enum QObject:Codable {
     case qValue(QValue)
     case qArr([QValue])
+    case q2DArr([[QValue]])
     case qDict([[String: QValue]])
     case qDictSingle([String: QValue])
     
@@ -18,6 +19,8 @@ public enum QObject:Codable {
             self = .qValue(qValue)
         case let qArr as [QValue]:
             self = .qArr(qArr)
+        case let q2dArr as [[QValue]]:
+            self = .q2DArr(q2dArr)
         case let qDict as [[String: QValue]]:
             self = .qDict(qDict)
         case let qDictSingle as [String: QValue]:
@@ -35,6 +38,9 @@ public enum QObject:Codable {
         if let qArr = try? container.decode([QValue].self) {
             self = .qArr(qArr)
         }
+        if let q2dArr = try? container.decode([[QValue]].self) {
+            self = .q2DArr(q2dArr)
+        }
         if let qDict = try? container.decode([[String:QValue]].self) {
             self = .qDict(qDict)
         }
@@ -51,6 +57,8 @@ public enum QObject:Codable {
             try container.encode(qValue)
         case .qArr(let qArr):
             try container.encode(qArr)
+        case .q2DArr(let q2dArr):
+            try container.encode(q2dArr)
         case .qDict(let qDict):
             try container.encode(qDict)
         case .qDictSingle(let qDictSingle):

@@ -35,17 +35,14 @@ extension QValue:Codable {
     public init(from decoder: Decoder) throws {
         if let intValue = try? decoder.singleValueContainer().decode(Int.self) {
             self = .int(intValue)
-            print("found int \(self)")
             return
         }
         if let stringValue = try? decoder.singleValueContainer().decode(String.self) {
             self = .string(stringValue)
-            print("found string \(self)")
             return
         }
         if let floatValue = try? decoder.singleValueContainer().decode(Float.self) {
             self = .float(floatValue)
-            print("found float \(self)")
             return
         }
         if let boolValue = try? decoder.singleValueContainer().decode(Bool.self) {
