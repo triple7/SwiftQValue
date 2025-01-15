@@ -31,27 +31,26 @@ public enum QObject:Codable {
     }
 
     public init(from decoder: Decoder) throws {
-        print("init from decoder")
             
         let container = try decoder.singleValueContainer()
-        if let qValue = try? container.decode(QValue.self) {
-            self = .qValue(qValue)
-            return
-        }
-        if let qArr = try? container.decode([QValue].self) {
-            self = .qArr(qArr)
-            return
-        }
-        if let q2dArr = try? container.decode([[QValue]].self) {
-            self = .q2DArr(q2dArr)
-            return
-        }
         if let qDict = try? container.decode([[String:QValue]].self) {
             self = .qDict(qDict)
             return
         }
         if let qDictSingle = try? container.decode([String:QValue].self) {
             self = .qDictSingle(qDictSingle)
+            return
+        }
+        if let q2dArr = try? container.decode([[QValue]].self) {
+            self = .q2DArr(q2dArr)
+            return
+        }
+        if let qArr = try? container.decode([QValue].self) {
+            self = .qArr(qArr)
+            return
+        }
+        if let qValue = try? container.decode(QValue.self) {
+            self = .qValue(qValue)
             return
         }
             fatalError("Failed to decode QObject")
