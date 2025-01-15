@@ -72,4 +72,40 @@ public enum QObject:Codable {
         }
     }
 
+    public var value:Any {
+        switch self {
+        case .qValue(let q):
+            return q
+        case .qArr(let arr):
+            return arr
+        case .q2DArr(let arr):
+            return arr
+        case .qDict(let dict):
+            return dict
+        case .qDictSingle(let dict):
+            return dict
+        }
+    }
+
+    public var qValue:QValue {
+        return self.value as! QValue
+    }
+        
+        public var qArray:[QValue] {
+            return self.value as! [QValue]
+        }
+
+        public var q2dArray:[[QValue]] {
+            return self.value as! [[QValue]]
+        }
+
+        public var qDict:[String: [QValue]] {
+            return self.value as! [String: [QValue]]
+        }
+
+        public var qSingleDict:[String: QValue] {
+            return self.value as! [String: QValue]
+        }
+
+        
 }

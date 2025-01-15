@@ -5,6 +5,7 @@
 //  Created by Yuma decaux on 14/1/2025.
 //
 
+import Foundation
 
 public enum QValue: Hashable, Identifiable {
     /** Quantum value which collapses to a working type
@@ -30,6 +31,7 @@ public enum QValue: Hashable, Identifiable {
         }
     }
 }
+
 extension QValue:Codable {
 
     public init(from decoder: Decoder) throws {
