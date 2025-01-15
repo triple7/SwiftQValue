@@ -34,10 +34,22 @@ public enum QObject:Codable {
         print("init from decoder")
         do {
             var container = try decoder.unkeyedContainer()
-            if let q2dArr = try? container.decode([[QValue]].self) {
-                print(q2dArr)
+            var outerArray: [[QObject]] = []
+
+            while !container.isAtEnd {
+                // Decode each inner array as another UnkeyedContainer
+                var innerContainer = try container.nestedUnkeyedContainer()
+                var innerArray: [QObject] = []
+                
+                while !innerContainer.isAtEnd {
+                    let qObject = try innerContainer.decode(QObject.self)
+                    innerArray.append(qObject)
+                }
+                
+                outerArray.append(innerArray)
             }
 
+            print(outerArray)
         } catch let error {
             print(error)
         }
