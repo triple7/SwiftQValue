@@ -31,6 +31,8 @@ public enum QObject:Codable {
     }
 
     public init(from decoder: Decoder) throws {
+        print("init from decoder")
+        print(decoder.userInfo)
         let container = try decoder.singleValueContainer()
         if let qValue = try? container.decode(QValue.self) {
             self = .qValue(qValue)
