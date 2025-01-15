@@ -33,7 +33,11 @@ public enum QObject:Codable {
     public init(from decoder: Decoder) throws {
         print("init from decoder")
         do {
-            try decoder.singleValueContainer()
+            var container = try decoder.unkeyedContainer()
+            if let q2dArr = try? container.decode([[QValue]].self) {
+                print(q2dArr)
+            }
+
         } catch let error {
             print(error)
         }
